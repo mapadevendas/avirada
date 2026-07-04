@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Virada — Live com Paula Batista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#161210;
+    --bg-dark-2:#1f1a16;
+    --bg-light:#faf6ee;
+    --gold:#d4a843;
+    --gold-deep:#b8892a;
+    --gold-soft:rgba(212,168,67,0.14);
+    --ink:#221b15;
+    --ink-soft:#544a3f;
+    --white:#ffffff;
+    --line:rgba(212,168,67,0.28);
+    --whatsapp:#25D366;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-light);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Archivo',sans-serif;
+    letter-spacing:-0.01em;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--gold);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(120% 90% at 85% 15%, rgba(212,168,67,0.18), transparent 55%),
+      linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%);
+    color:var(--white);
+    padding:28px 0 64px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 46px);
+    pointer-events:none;
+  }
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:6px 0 40px;position:relative;z-index:2;
+  }
+  .seal{
+    width:46px;height:46px;border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Archivo',sans-serif;font-weight:800;color:var(--gold);font-size:18px;
+    flex-shrink:0;
+  }
+  .brandline{font-size:13px;letter-spacing:0.08em;color:#cbb98f;text-transform:uppercase;font-weight:600;}
+  .hero-grid{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1fr;gap:36px;align-items:center;
+  }
+  .hero-kicker{
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(52px,14vw,88px);
+    line-height:0.92; letter-spacing:-0.02em;
+    background:linear-gradient(180deg,#f3e3bb, var(--gold) 70%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin:0 0 6px;
+  }
+  .hero-sub{
+    font-size:13.5px;font-weight:600;color:#cbb98f;letter-spacing:0.06em;text-transform:uppercase;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:clamp(26px,5.6vw,40px);
+    font-weight:800;line-height:1.18;color:var(--white);margin:0 0 20px;
+    max-width:16ch;
+  }
+  .hero p.lede{
+    font-size:16.5px;line-height:1.6;color:#d8cfc0;max-width:52ch;margin:0 0 32px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px 22px;margin-bottom:32px;
+  }
+  .meta-item{
+    display:flex;align-items:center;gap:8px;font-size:13.5px;color:#e6dcc6;font-weight:600;
+  }
+  .meta-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(180deg,#e6c063,var(--gold-deep));
+    color:#221a0d;
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:16px;
+    padding:18px 30px;border-radius:10px;
+    box-shadow:0 12px 30px -8px rgba(212,168,67,0.55), inset 0 1px 0 rgba(255,255,255,0.4);
+    border:none;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(212,168,67,0.7);}
+  .cta.block{display:flex;width:100%;justify-content:center;}
+  .cta-arrow{font-size:18px;transition:transform .15s ease;}
+  .cta:hover .cta-arrow{transform:translateX(3px);}
+
+  .hero-photo-wrap{
+    position:relative;justify-self:center;
+    width:min(100%,320px);
+  }
+  .hero-photo{
+    aspect-ratio:4/5;border-radius:18px;
+    background:
+      radial-gradient(120% 100% at 30% 0%, rgba(212,168,67,0.35), transparent 60%),
+      linear-gradient(160deg,#2a2118,#141110);
+    border:1px solid var(--line);
+    display:flex;align-items:flex-end;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .hero-photo .ph-label{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#9c8f78;font-size:12.5px;text-align:center;padding:20px;line-height:1.5;
+  }
+  .hero-photo .ph-ring{
+    position:absolute;width:230px;height:230px;border-radius:50%;
+    border:1px solid rgba(212,168,67,0.35);
+  }
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:64px 0;}
+  .section-dark{background:var(--bg-dark);color:var(--white);}
+  h2.section-title{
+    font-size:clamp(24px,4.2vw,34px);font-weight:800;line-height:1.2;
+    margin:10px 0 18px;max-width:18ch;
+  }
+  .lede-2{font-size:16px;line-height:1.7;color:var(--ink-soft);max-width:58ch;}
+  .section-dark .lede-2{color:#cfc5b2;}
+
+  /* ===== DOR ===== */
+  .dor-lines p{
+    font-size:17px;line-height:1.8;margin:0 0 20px;max-width:60ch;color:var(--ink);
+  }
+  .dor-lines p.hit{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,3.4vw,27px);
+    line-height:1.35;color:var(--ink);border-left:3px solid var(--gold);padding-left:20px;margin:36px 0;
+  }
+
+  /* ===== PROVA SOCIAL ===== */
+  .proof-card{
+    background:var(--white);border:1px solid #e9e1cd;border-radius:16px;
+    padding:26px 28px;margin-top:24px;position:relative;
+  }
+  .proof-card .quote-mark{
+    font-family:'Archivo',sans-serif;font-size:52px;color:var(--gold);line-height:1;
+    margin-bottom:6px;display:block;
+  }
+  .proof-card p{font-size:16.5px;line-height:1.6;font-style:italic;color:var(--ink);margin:0 0 12px;}
+  .proof-tag{
+    font-size:12px;color:var(--gold-deep);font-weight:700;letter-spacing:0.03em;
+    background:var(--gold-soft);display:inline-block;padding:4px 10px;border-radius:999px;
+  }
+  .stat-row{
+    display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;
+  }
+  .stat-pill{
+    background:var(--gold-soft);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;flex:1;min-width:150px;
+  }
+  .stat-pill b{display:block;font-family:'Archivo',sans-serif;font-size:22px;color:var(--gold-deep);}
+  .stat-pill span{font-size:12.5px;color:var(--ink-soft);}
+
+  /* ===== METODO / ATOS ===== */
+  .atos{display:flex;flex-direction:column;gap:0;margin-top:36px;}
+  .ato{
+    display:grid;grid-template-columns:64px 1fr;gap:20px;
+    padding:28px 0;border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .ato:last-child{border-bottom:1px solid rgba(255,255,255,0.12);}
+  .ato-num{
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:38px;
+    background:linear-gradient(180deg,#f3e3bb,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;
+    line-height:1;
+  }
+  .ato h3{font-size:19px;margin:2px 0 8px;color:var(--white);}
+  .ato p{font-size:15.5px;line-height:1.65;color:#cfc5b2;margin:0;max-width:56ch;}
+
+  /* ===== PARA QUEM ===== */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:20px;margin-top:32px;}
+  @media(min-width:720px){.grid-2{grid-template-columns:1fr 1fr;}}
+  .who-card{border-radius:16px;padding:26px 24px;}
+  .who-yes{background:var(--white);border:1px solid #e9e1cd;}
+  .who-no{background:#f1ede2;border:1px solid #e2dac4;}
+  .who-card h4{
+    font-family:'Archivo',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;
+    margin:0 0 16px;
+  }
+  .who-yes h4{color:var(--gold-deep);}
+  .who-no h4{color:#8a7f6c;}
+  .who-card ul{margin:0;padding:0;list-style:none;}
+  .who-card li{
+    font-size:14.5px;line-height:1.55;color:var(--ink);margin-bottom:14px;padding-left:22px;position:relative;
+  }
+  .who-yes li::before{content:"✓";position:absolute;left:0;color:var(--gold-deep);font-weight:800;}
+  .who-no li::before{content:"×";position:absolute;left:0;color:#a49a86;font-weight:800;}
+
+  /* ===== ENTREGAVEIS / BONUS ===== */
+  .deliv-list{margin-top:28px;display:flex;flex-direction:column;gap:16px;}
+  .deliv-item{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--white);border:1px solid #e9e1cd;border-radius:12px;padding:18px 20px;
+  }
+  .deliv-dot{
+    width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold-deep);
+    display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;
+    flex-shrink:0;
+  }
+  .deliv-item p{margin:0;font-size:15px;line-height:1.55;color:var(--ink);}
+
+  .bonus-box{
+    margin-top:32px;background:linear-gradient(160deg,#241d16,#141110);
+    border:1px solid var(--line);border-radius:16px;padding:28px;color:var(--white);
+  }
+  .bonus-box h4{color:var(--gold);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 16px;}
+  .bonus-box ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .bonus-box li{font-size:15px;line-height:1.6;color:#e7dfcd;padding-left:20px;position:relative;}
+  .bonus-box li::before{content:"★";position:absolute;left:0;color:var(--gold);font-size:12px;top:3px;}
+  .bonus-box .note{opacity:0.6;font-style:italic;}
+
+  /* ===== VALOR ===== */
+  .value-card{
+    margin-top:28px;border:1.5px dashed var(--gold);border-radius:16px;padding:30px;text-align:center;background:var(--gold-soft);
+  }
+  .value-card .old{font-size:15px;color:var(--ink-soft);text-decoration:line-through;}
+  .value-card .new{
+    font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(26px,5vw,36px);color:var(--gold-deep);margin:8px 0;
+  }
+  .value-card p.sub{font-size:14.5px;color:var(--ink-soft);max-width:42ch;margin:6px auto 0;}
+
+  /* ===== DEPOIMENTOS ===== */
+  .testi-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px;}
+  @media(min-width:720px){.testi-grid{grid-template-columns:repeat(3,1fr);}}
+  .testi-card{background:var(--white);border:1px solid #e9e1cd;border-radius:14px;padding:22px;}
+  .testi-card p{font-size:14.5px;font-style:italic;line-height:1.55;color:var(--ink);margin:0 0 14px;}
+  .testi-name{font-size:12.5px;font-weight:700;color:var(--gold-deep);}
+  .testi-role{font-size:11.5px;color:var(--ink-soft);}
+
+  /* ===== AUTORIDADE ===== */
+  .auth-wrap{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;margin-top:32px;}
+  @media(min-width:720px){.auth-wrap{grid-template-columns:220px 1fr;}}
+  .auth-photo{
+    width:100%;aspect-ratio:1/1;border-radius:16px;
+    background:radial-gradient(120% 100% at 30% 0%, rgba(212,168,67,0.35), transparent 60%), linear-gradient(160deg,#2a2118,#141110);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:#9c8f78;font-size:12px;text-align:center;padding:16px;
+  }
+  .auth-text p{font-size:15.5px;line-height:1.75;color:var(--ink);margin:0 0 14px;}
+  .auth-cred{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;
+  }
+  .cred-chip{
+    font-size:12px;font-weight:700;color:var(--gold-deep);background:var(--gold-soft);
+    padding:6px 12px;border-radius:999px;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-item{border-top:1px solid #e2dac4;padding:22px 0;}
+  .faq-item:last-child{border-bottom:1px solid #e2dac4;}
+  .faq-q{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:16px;cursor:pointer;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:var(--ink);
+  }
+  .faq-q .plus{color:var(--gold-deep);font-size:20px;flex-shrink:0;transition:transform .2s ease;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0;overflow:hidden;transition:max-height .25s ease;
+  }
+  .faq-item.open .faq-a{max-height:400px;}
+  .faq-a p{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:14px 0 0;max-width:62ch;}
+
+  /* ===== OFERTA FINAL ===== */
+  .final{
+    background:
+      radial-gradient(120% 90% at 15% 85%, rgba(212,168,67,0.18), transparent 55%),
+      linear-gradient(180deg, var(--bg-dark-2) 0%, var(--bg-dark) 100%);
+    color:var(--white);text-align:center;padding:76px 0 90px;
+  }
+  .final h2{font-size:clamp(26px,5.6vw,40px);font-weight:800;line-height:1.25;max-width:18ch;margin:0 auto 22px;}
+  .final .lede-2{margin:0 auto 34px;}
+  .final .date-badge{
+    display:inline-flex;gap:10px;align-items:center;font-size:13.5px;font-weight:700;color:var(--gold);
+    letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;
+  }
+
+  footer{background:var(--bg-dark);color:#8a7f6c;padding:28px 0;text-align:center;font-size:12.5px;}
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .wa-float{
+    position:fixed;bottom:22px;right:22px;z-index:50;
+    width:58px;height:58px;border-radius:50%;background:var(--whatsapp);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px -6px rgba(0,0,0,0.45);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 10px 26px -6px rgba(0,0,0,0.45),0 0 0 0 rgba(37,211,102,0.5);}
+    70%{box-shadow:0 10px 26px -6px rgba(0,0,0,0.45),0 0 0 14px rgba(37,211,102,0);}
+    100%{box-shadow:0 10px 26px -6px rgba(0,0,0,0.45),0 0 0 0 rgba(37,211,102,0);}
+  }
+
+  .placeholder-flag{
+    display:inline-block;font-size:11px;color:#a3722b;background:#f6e9c9;border:1px dashed #c99b3b;
+    padding:2px 8px;border-radius:6px;margin-left:6px;font-weight:600;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="seal">P</div>
+        <div class="brandline">Time Paula Batista</div>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">A VIRADA</div>
+        <div class="hero-sub">O que acontece antes da primeira venda</div>
+
+        <h1>Você entrega resultado todo mês. O seu salário continua entregando o mesmo valor.</h1>
+        <p class="lede">Você é bom no que faz. Talvez o melhor da equipe. Bate meta, resolve o que ninguém resolve, é a pessoa que o gestor chama primeiro. E ainda assim, o valor que cai na conta tem um teto que a sua performance não consegue romper. No dia 23 de agosto, em uma live gratuita de 2 horas, Paula Batista conta o dia em que percebeu isso na própria vida, e o que ela fez em seguida.</p>
+
+        <div class="hero-meta">
+          <div class="meta-item"><span class="meta-dot"></span>23 de agosto</div>
+          <div class="meta-item"><span class="meta-dot"></span>Ao vivo, online</div>
+          <div class="meta-item"><span class="meta-dot"></span>100% gratuito</div>
+        </div>
+
+        <a href="#inscricao" class="cta"><span>Sim, quero encontrar minha virada</span><span class="cta-arrow">→</span></a>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <div class="ph-ring"></div>
+          <div class="ph-label">[ foto da Paula Batista aqui<br>sorrindo, pose de autoridade acessível ]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DOR ===================== -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">A conta que você já conhece</span>
+    <h2 class="section-title">Quando ser o melhor da equipe não muda o seu salário</h2>
+    <div class="dor-lines" style="margin-top:24px;">
+      <p>Sexta-feira, fim do mês. Você abre o aplicativo do banco, olha o saldo e faz a conta de sempre: paga isso, sobra aquilo. E "aquilo" é quase nada, de novo.</p>
+      <p>O estranho é que isso não bate com o resto da sua semana. Você é a pessoa que entrega mais rápido, que o gestor chama quando o problema é sério, que puxa o resultado do time pra cima. Alta performance não é o problema. Nunca foi.</p>
+      <p class="hit">O problema é que, num salário fixo, existe um teto de vidro que a sua performance não quebra.</p>
+      <p>Você pode dobrar a dedicação amanhã. O valor do dia 5 continua o mesmo, porque o cargo tem um limite, e o limite não se importa com o quanto você entrega. Salário tem nome de segurança. Na prática, funciona como teto, especialmente pra quem já entrega mais do que o cargo pede.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROVA SOCIAL ===================== -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="proof-card">
+      <span class="quote-mark">"</span>
+      <p>Eu mandava currículo há 8 meses e ninguém chamava. Hoje bato minha meta e ninguém segura meu crescimento.<span class="placeholder-flag">substituir por depoimento real</span></p>
+      <span class="proof-tag">Consultor(a), Time Paula Batista</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-pill"><b>8 unidades</b><span>Paraná e São Paulo</span></div>
+      <div class="stat-pill"><b>100+<span class="placeholder-flag" style="margin-left:4px;">confirmar número</span></b><span>consultores em formação</span></div>
+      <div class="stat-pill"><b>35 anos</b><span>de Ademicon no mercado</span></div>
+    </div>
+
+    <div style="margin-top:36px;text-align:center;">
+      <a href="#inscricao" class="cta">A live é gratuita, online, e acontece uma única vez<span class="cta-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METODO (3 ATOS) ===================== -->
+<section class="section-dark">
+  <div class="wrap">
+    <span class="eyebrow">O que acontece nas 2 horas</span>
+    <h2 class="section-title">Três atos, uma virada</h2>
+    <p class="lede-2">Não é uma palestra motivacional solta. É uma sequência com um objetivo em cada parte.</p>
+
+    <div class="atos">
+      <div class="ato">
+        <div class="ato-num">01</div>
+        <div>
+          <h3>A mente</h3>
+          <p>Paula desmonta, uma por uma, as crenças que seguram você no mesmo lugar. A do "eu não levo jeito". A do "comissão é arriscado". A do "sem experiência ninguém me quer". Você vai entender de onde cada uma veio e por que elas custam caro.</p>
+        </div>
+      </div>
+      <div class="ato">
+        <div class="ato-num">02</div>
+        <div>
+          <h3>A venda</h3>
+          <p>Vender é habilidade que se aprende, com passos, treino e acompanhamento. Paula mostra o caminho que um iniciante percorre até a primeira venda, o mesmo que os consultores dela seguem todos os dias.</p>
+        </div>
+      </div>
+      <div class="ato">
+        <div class="ato-num">03</div>
+        <div>
+          <h3>O convite</h3>
+          <p>Quem assistir até o fim conhece o processo pra entrar no Time Paula Batista, com vagas abertas ao vivo e um convite pro encontro presencial de setembro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARA QUEM ===================== -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Antes de se inscrever</span>
+    <h2 class="section-title">Pra quem é esta live (e pra quem não é)</h2>
+
+    <div class="grid-2">
+      <div class="who-card who-yes">
+        <h4>É pra você que</h4>
+        <ul>
+          <li>Trabalha registrado, é competente, e sente que bateu no teto</li>
+          <li>Está tentando voltar pro mercado e só recebe silêncio depois de cada currículo</li>
+          <li>Já vive de renda variável, mas rema sozinho, sem método e sem equipe</li>
+          <li>Tem 18 a 25 anos, muita vontade, e todo lugar pede a experiência que ainda não te deixaram ter</li>
+          <li>Já conhece o Time Paula Batista e ficou com aquela ideia guardada: "um dia eu entro"</li>
+        </ul>
+      </div>
+      <div class="who-card who-no">
+        <h4>Não é pra você que</h4>
+        <ul>
+          <li>Procura dinheiro rápido sem se dedicar</li>
+          <li>Quer um emprego CLT tradicional e não abre mão disso</li>
+          <li>Não tem 2 horas pra investir na própria carreira</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DIAGNOSTICO ===================== -->
+<section class="section-dark" id="diagnostico">
+  <div class="wrap">
+    <span class="eyebrow">Antes de continuar</span>
+    <h2 class="section-title">Qual desses retratos é mais parecido com você</h2>
+    <p class="lede-2">Leva 30 segundos. No final, você vê o que a live vai destravar especificamente pro seu momento.</p>
+
+    <div id="quiz-box" style="margin-top:32px;background:rgba(255,255,255,0.03);border:1px solid var(--line);border-radius:16px;padding:28px;">
+
+      <div class="quiz-step" data-step="1">
+        <div style="font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">Pergunta 1 de 3</div>
+        <h3 style="color:var(--white);font-size:18px;margin:0 0 20px;">Hoje, como é a sua relação com dinheiro e trabalho?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-profile="clt_teto">Trabalho registrado, entrego bastante, mas o salário não acompanha meu esforço</button>
+          <button class="quiz-opt" data-profile="recomecante">Estou fora do mercado ou buscando recolocação agora</button>
+          <button class="quiz-opt" data-profile="autonomo">Já vivo de renda variável, mas sem estrutura nem equipe</button>
+          <button class="quiz-opt" data-profile="jovem">Tenho pouca experiência formal e procuro minha primeira grande oportunidade</button>
+          <button class="quiz-opt" data-profile="antigo">Já conheço o Time Paula Batista, só nunca dei o passo</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2" style="display:none;">
+        <div style="font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">Pergunta 2 de 3</div>
+        <h3 style="color:var(--white);font-size:18px;margin:0 0 20px;">O que mais pesa quando você pensa em mudar de vida financeira?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-weight="medo_comissao">O medo de não ter uma renda garantida todo mês</button>
+          <button class="quiz-opt" data-weight="falta_metodo">A sensação de não ter método, só ficar tentando sozinho</button>
+          <button class="quiz-opt" data-weight="sem_tempo">A falta de tempo pra aprender algo novo do zero</button>
+          <button class="quiz-opt" data-weight="duvida_capaz">A dúvida se eu realmente sou capaz de vender</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3" style="display:none;">
+        <div style="font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">Pergunta 3 de 3</div>
+        <h3 style="color:var(--white);font-size:18px;margin:0 0 20px;">Se a virada acontecesse, o que mudaria primeiro?</h3>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-goal="renda">Meu teto de ganhos desaparece</button>
+          <button class="quiz-opt" data-goal="proposito">Eu teria um propósito e uma equipe em volta de mim</button>
+          <button class="quiz-opt" data-goal="tempo">Eu ganharia liberdade de horário e autonomia</button>
+          <button class="quiz-opt" data-goal="reconhecimento">Eu seria reconhecido pelo que realmente entrego</button>
+        </div>
+      </div>
+
+      <div class="quiz-result" data-step="result" style="display:none;">
+        <div style="font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;">Seu diagnóstico</div>
+        <h3 id="result-title" style="color:var(--white);font-size:21px;margin:0 0 14px;"></h3>
+        <p id="result-text" style="color:#cfc5b2;font-size:15px;line-height:1.7;margin:0 0 24px;max-width:56ch;"></p>
+        <a href="#inscricao" class="cta"><span>Sim, quero ver isso na live do dia 23</span><span class="cta-arrow">→</span></a>
+      </div>
+
+      <div style="margin-top:20px;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;">
+        <div id="quiz-progress" style="height:100%;width:33%;background:var(--gold);transition:width .3s ease;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .quiz-options{display:flex;flex-direction:column;gap:10px;}
+  .quiz-opt{
+    text-align:left;background:rgba(255,255,255,0.04);border:1px solid var(--line);color:#e7dfcd;
+    font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.5;padding:14px 18px;border-radius:10px;
+    cursor:pointer;transition:background .15s ease,border-color .15s ease;
+  }
+  .quiz-opt:hover{background:rgba(212,168,67,0.14);border-color:var(--gold);}
+</style>
+
+<script>
+(function(){
+  var answers = {};
+  var steps = document.querySelectorAll('.quiz-step');
+  var resultBox = document.querySelector('.quiz-result');
+  var progress = document.getElementById('quiz-progress');
+
+  var results = {
+    clt_teto: {
+      title: "Você é o perfil CLT no teto",
+      text: "Você entrega performance mas o cargo não te deixa crescer no ganho. Na live, o Ato 1 foi feito pra você: vamos mostrar por que o salário fixo trava exatamente quem mais se dedica, e o que muda quando o seu esforço passa a aparecer direto no seu ganho."
+    },
+    recomecante: {
+      title: "Você é o perfil recomeço",
+      text: "Você tem experiência de vida e vontade, só falta alguém abrir a porta. Na live, você vai ver que aqui a seleção olha atitude antes de currículo, e conhecer histórias de pessoas que recomeçaram exatamente de onde você está agora."
+    },
+    autonomo: {
+      title: "Você é o perfil autônomo sem estrutura",
+      text: "Você já não tem medo de renda variável, o que falta é método e equipe. A live mostra como funciona a Universidade Corporativa e o plano de carreira que tira você do isolamento e coloca estrutura por trás do seu esforço."
+    },
+    jovem: {
+      title: "Você é o perfil primeira oportunidade",
+      text: "Pouca experiência formal não é o fim de linha, é o ponto de partida. Na live, você vai ver o passo a passo de carreira desenhado em degraus, do iniciante ao gestor, com gente da sua idade que já subiu esses degraus."
+    },
+    antigo: {
+      title: "Você é o perfil quase lá",
+      text: "Você já conhece o Time Paula Batista. Não falta informação, falta o empurrão certo. A live do dia 23 é esse empurrão: as vagas abrem ao vivo, e dessa vez o próximo passo está a um clique de distância."
+    }
+  };
+
+  function showStep(n){
+    steps.forEach(function(s){ s.style.display = (s.dataset.step == n) ? 'block' : 'none'; });
+    if(n === 'result'){
+      resultBox.style.display = 'block';
+      progress.style.width = '100%';
+    } else {
+      resultBox.style.display = 'none';
+      progress.style.width = (n/3*100) + '%';
+    }
+  }
+
+  document.querySelectorAll('.quiz-step').forEach(function(step){
+    step.querySelectorAll('.quiz-opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var stepNum = parseInt(step.dataset.step);
+        if(btn.dataset.profile) answers.profile = btn.dataset.profile;
+        if(btn.dataset.weight) answers.weight = btn.dataset.weight;
+        if(btn.dataset.goal) answers.goal = btn.dataset.goal;
+
+        if(stepNum < 3){
+          showStep(stepNum + 1);
+        } else {
+          var r = results[answers.profile] || results.clt_teto;
+          document.getElementById('result-title').textContent = r.title;
+          document.getElementById('result-text').textContent = r.text;
+          showStep('result');
+        }
+      });
+    });
+  });
+})();
+</script>
+
+<!-- ===================== ENTREGAVEIS ===================== -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <span class="eyebrow">O que você leva pra casa</span>
+    <h2 class="section-title">Isso não é só uma conversa</h2>
+
+    <div class="deliv-list">
+      <div class="deliv-item"><div class="deliv-dot">1</div><p>A história real do ponto de virada de Paula Batista, sem versão maquiada</p></div>
+      <div class="deliv-item"><div class="deliv-dot">2</div><p>O mapa das 3 crenças que travam quem nunca vendeu, e como desmontar cada uma</p></div>
+      <div class="deliv-item"><div class="deliv-dot">3</div><p>O passo a passo de carreira dentro de uma equipe de vendas: de iniciante a gestor, degrau por degrau</p></div>
+      <div class="deliv-item"><div class="deliv-dot">4</div><p>Os números reais do mercado de consórcio, o setor que cresceu dois dígitos e segue contratando</p></div>
+      <div class="deliv-item"><div class="deliv-dot">5</div><p>O caminho de entrada no Time Paula Batista, apresentado ao vivo</p></div>
+    </div>
+
+    <div class="bonus-box">
+      <h4>Bônus por estar ao vivo</h4>
+      <ul>
+        <li>Acesso prioritário às vagas: o formulário de candidatura abre primeiro pra quem está na live</li>
+        <li>Convite pro encontro presencial de setembro, onde você conhece gestores, supervisores e a estrutura por dentro</li>
+        <li class="note">[espaço para um bônus material seu: PDF do plano de carreira, checklist de preparação, o que você decidir entregar]</li>
+      </ul>
+    </div>
+
+    <div class="value-card">
+      <div class="old">Uma mentoria de vendas séria custa de R$ 497 a alguns milhares de reais</div>
+      <div class="new">Sua entrada: 2 horas da sua noite</div>
+      <p class="sub">Duas horas com quem construiu uma operação com 8 unidades valeriam esse preço. No dia 23, o custo é só a disposição de ouvir uma história que talvez pareça com a sua.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DEPOIMENTOS ===================== -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <span class="eyebrow">Quem já vive do outro lado</span>
+    <h2 class="section-title">Consultores reais do Time Paula Batista</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p>"[substituir por depoimento real: consultora que veio de recolocação]"</p>
+        <div class="testi-name">Nome da consultora</div>
+        <div class="testi-role">Unidade</div>
+      </div>
+      <div class="testi-card">
+        <p>"[substituir por depoimento real: consultor jovem que começou do zero]"</p>
+        <div class="testi-name">Nome do consultor</div>
+        <div class="testi-role">Unidade</div>
+      </div>
+      <div class="testi-card">
+        <p>"[substituir por depoimento real: consultor que veio de CLT e hoje ganha mais]"</p>
+        <div class="testi-name">Nome do consultor</div>
+        <div class="testi-role">Unidade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUPORTE + GARANTIA ===================== -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="grid-2">
+      <div class="who-card who-yes">
+        <h4>Suporte</h4>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--ink);margin:0;">Ficou com dúvida antes do evento? O time responde no WhatsApp oficial e no grupo da live, onde você recebe lembretes, conteúdos de preparação e o link de acesso.</p>
+      </div>
+      <div class="who-card who-yes">
+        <h4>Risco zero</h4>
+        <p style="font-size:14.5px;line-height:1.6;color:var(--ink);margin:0;">A live é 100% gratuita e online. Se nas primeiras duas conversas você sentir que aquilo não é pra você, fecha a aba e segue sua noite. O custo de não participar, só você sabe calcular.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUTORIDADE ===================== -->
+<section class="section-dark">
+  <div class="wrap">
+    <span class="eyebrow">Quem conduz a live</span>
+    <h2 class="section-title">Paula Batista</h2>
+    <div class="auth-wrap">
+      <div class="auth-photo">[ foto da Paula<br>estilo editorial, fundo escuro amadeirado ]</div>
+      <div class="auth-text">
+        <p>Paula não começou gestora. <span class="placeholder-flag" style="background:#3a2f22;color:#e6c063;border-color:#7a5f2c;">ajustar com a história real: onde ela estava antes, o momento exato da virada</span></p>
+        <p>Hoje lidera o Time Paula Batista, uma operação com 8 unidades no Paraná e em São Paulo, dezenas de consultores em formação contínua e uma universidade corporativa própria, dentro do sistema Ademicon, a maior administradora independente de consórcio do Brasil, com 35 anos de mercado.</p>
+        <p>O que ela ensina no dia 23 não veio de livro. Veio da parte da história em que quase ninguém acreditou.</p>
+        <div class="auth-cred">
+          <span class="cred-chip">Ademicon · 35 anos</span>
+          <span class="cred-chip">8 unidades PR/SP</span>
+          <span class="cred-chip">Universidade Corporativa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Perguntas que você talvez esteja se fazendo</span>
+    <h2 class="section-title">Antes de você decidir</h2>
+
+    <div style="margin-top:20px;">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>"Eu não levo jeito pra vendas."</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>A maioria pensa que vendedor nasce falante. Quem forma vendedores todos os dias sabe que venda é processo: tem etapas, treino e correção de rota. É exatamente por isso que existe uma universidade corporativa dentro do time. Jeito se constrói. O que a live pede de você é só a disposição de aprender.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>"Viver de comissão é arriscado demais."</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Essa é a crença central que a live desmonta na primeira hora. Um resumo: o que a maioria chama de segurança é um valor que continua igual quando você melhora. Quem vive de comissão com método e equipe trabalha num modelo em que o esforço aparece no extrato. A Paula apresenta as duas contas, lado a lado, e você tira sua conclusão.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>"Não tenho experiência, não vão me querer."</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Processo seletivo tradicional olha pro seu passado. O do Time Paula Batista olha pra sua atitude, porque o conhecimento técnico a empresa entrega na formação. Vários consultores da equipe entraram sem nunca ter vendido nada.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>"Isso é algum esquema, tipo pirâmide?"</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>Pergunta justa, e a resposta é direta: consórcio é um produto financeiro regulamentado pelo Banco Central. O Time Paula Batista opera dentro da Ademicon, administradora com 35 anos de história e mais de 290 unidades. O ganho do consultor vem de venda real, com contrato e comissão registrada. Na live, tudo isso é mostrado às claras.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>"Agora não é um bom momento pra mim."</span><span class="plus">+</span></div>
+        <div class="faq-a"><p>A live acontece uma vez, dia 23 de agosto, e as vagas da equipe abrem nela. Esperar o momento perfeito costuma ser a decisão mais cara da lista, porque ela não aparece em nenhuma fatura. Aparece nos anos que passam com tudo igual.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OFERTA FINAL ===================== -->
+<section class="final" id="inscricao">
+  <div class="wrap">
+    <div class="date-badge">23 de agosto · online · gratuito</div>
+    <h2>Daqui a um ano, você vai estar em um destes dois lugares</h2>
+    <p class="lede-2" style="margin-left:auto;margin-right:auto;">Fazendo a mesma conta de fim de mês, com os mesmos números. Ou olhando pra agosto de 2026 como o mês em que sua história dobrou a esquina.</p>
+    <a href="#" class="cta"><span>Sim, quero encontrar minha virada</span><span class="cta-arrow">→</span></a>
+    <p style="margin-top:22px;font-size:13px;color:#a89b7e;">O seu ponto de virada tem data marcada.</p>
+  </div>
+</section>
+
+<footer>Time Paula Batista · Ademicon</footer>
+
+<a href="#" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.07-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="#fff" opacity="0"/><path d="M17.47 14.38c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.17-.43-2.23-1.37-.82-.73-1.38-1.64-1.54-1.92-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.18-.28.28-.47.09-.18.05-.35-.02-.5-.07-.14-.62-1.5-.85-2.05-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.48.07-.73.35-.25.28-.96.94-.96 2.29 0 1.35.98 2.65 1.12 2.83.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.66.21 1.25.18 1.72.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z" fill="#fff"/></svg>
+</a>
+
+</body>
+</html>
